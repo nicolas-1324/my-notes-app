@@ -1,29 +1,29 @@
-import javax.swing.*;
-import java.awt.Graphics;
+import java.util.*;
+import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.lang.StringBuffer;
+
 public class MyNotes{
-	public static void main(String[] args){
-	
-		//Basic frame	
-		JFrame jframe = new JFrame("My Notes");
+	public static void main(String[] args)throws IOException{
+		BufferedReader vhodText = new BufferedReader(new InputStreamReader(System.in));
+		Scanner in = new Scanner(System.in);
 
-		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		//Menu constructors
-		JMenuBar menu_bar = new JMenuBar();
-		JMenu menu = new JMenu("File");
-
-		//Menu Items
-		JMenuItem item_1 = new JMenuItem("New");
-		JMenuItem item_2 = new JMenuItem("Open");
-		JMenuItem item_3 = new JMenuItem("Save");
-
-		menu.add(item_1);
-		menu.add(item_2);
-		menu.add(item_3);
-		menu_bar.add(menu);//dodam menu na menu_bar
-
-		jframe.setJMenuBar(menu_bar);
-		jframe.setSize(400, 400);
-		jframe.setVisible(true);
+		System.out.print("Do you want to make a new note or write to an existing one [new/write]:");
+		//Note note = new Note();	
+		String izbira = vhodText.readLine();
+		int st_note;
+		switch(izbira){
+			case "new":
+				note = vhodText.readLine();
+				
+				break;
+			case "write":
+				System.out.println("To which file do you want to write");
+				break;
+			default:
+				System.out.println("Vnesel veljaven vnos!");
+		}
 	}
 }
