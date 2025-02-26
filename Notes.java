@@ -1,14 +1,16 @@
 public class Notes{
 	private String note;
 	private int st_note;
-	private String[] storage = new String[10];
-
+	
 	public Notes(){
-
-	} 
-
-	public String izpis(int st_note){
-		return storage[st_note];
+		this.note = note;
 	}
 
+	public void writeNote(String note){
+		this.note = note;
+	}
+
+	public String outNote(Notes x){
+		return this.note;
+	}	
 }
