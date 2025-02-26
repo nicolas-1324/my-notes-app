@@ -9,11 +9,9 @@ public class MyNotes{
 	public static void main(String[] args)throws IOException{
 		BufferedReader vhodText = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder izpis = new StringBuilder();
-		Scanner in = new Scanner(System.in);
 
 		System.out.print("Do you want to make a new note or read/write to an existing one [new/read/write]:");
 		String izbira = vhodText.readLine();
-		int st_note;
 		switch(izbira){
 			case "new":
 				System.out.println("Write your note:");
@@ -36,7 +34,29 @@ public class MyNotes{
 			case "write":
 				System.out.println("Enter the path to the file you want to EDIT");
 				pot = vhodText.readLine();
-				String test = vhodText.readLine("KOSA MONA");
+				try{
+					FileReader bralec = new FileReader(pot);
+					int podatki = bralec.read();
+
+					System.out.println("Note:");
+					while(podatki != -1){
+						char znak = (char)podatki;
+						izpis.append(znak);
+						System.out.print(znak);
+						podatki = bralec.read();
+					}
+					bralec.close();
+
+					System.out.println("\nEDIT your note:");
+					String vnesenEdit = vhodText.readLine();
+
+					FileWriter pisalec = new FileWriter(pot, false);
+					pisalec.write(vnesenEdit);
+					pisalec.close();
+				}
+				catch(Exception e){
+					System.out.println(e.getMessage());
+				}
 				break;
 			case "read":
 				System.out.println("Enter the PATH to the file that you want to READ");
@@ -45,7 +65,7 @@ public class MyNotes{
 					FileReader bralec = new FileReader(pot);
 					int podatki = bralec.read();
 
-					System.out.println("Vsebina datoteke: ");
+					System.out.println("note:");
 					while(podatki != -1){
 						char znak = (char)podatki;
 						izpis.append(znak);
